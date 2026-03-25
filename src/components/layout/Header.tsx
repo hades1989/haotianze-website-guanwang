@@ -26,7 +26,7 @@ export function Header() {
             <Shield className="h-6 w-6 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-gray-900">皓天泓</span>
+            <span className="text-lg font-bold text-gray-900">皓天泽</span>
             <span className="text-xs text-gray-500">专业联网报警服务</span>
           </div>
         </Link>

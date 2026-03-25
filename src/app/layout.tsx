@@ -6,8 +6,8 @@ import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: {
-    default: '皓天泓 - 专业联网报警运营服务',
-    template: '%s | 皓天泓',
+    default: '皓天泽 - 专业联网报警运营服务',
+    template: '%s | 皓天泽',
   },
   description:
     '郑州皓天泽数智科技有限公司是一家专业的联网报警运营服务公司，提供联网报警、视频监控、门禁系统等全方位安防解决方案，保障您的生命财产安全。',
@@ -24,10 +24,10 @@ export const metadata: Metadata = {
   authors: [{ name: '郑州皓天泽数智科技有限公司' }],
   generator: 'Coze Code',
   openGraph: {
-    title: '皓天泓 - 专业联网报警运营服务',
+    title: '皓天泽 - 专业联网报警运营服务',
     description:
       '提供联网报警、视频监控、门禁系统等全方位安防解决方案，24小时守护您的安全。',
-    siteName: '皓天泓',
+    siteName: '皓天泽',
     locale: 'zh_CN',
     type: 'website',
   },
