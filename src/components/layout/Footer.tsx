@@ -28,12 +28,12 @@ export function Footer() {
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold">安信护卫</span>
+                <span className="text-lg font-bold">皓天泓</span>
                 <span className="text-xs text-gray-400">专业联网报警服务</span>
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
-              安信护卫是一家专业的联网报警运营服务公司，致力于为客户提供全方位的安防解决方案，保障您的生命财产安全。
+              郑州皓天泽数智科技有限公司是一家专业的联网报警运营服务公司，致力于为客户提供全方位的安防解决方案，保障您的生命财产安全。
             </p>
           </div>
 
@@ -77,7 +77,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center text-sm text-gray-400">
                 <Phone className="h-4 w-4 mr-3 text-blue-500" />
-                400-888-8888
+                0371-68891110
               </li>
               <li className="flex items-center text-sm text-gray-400">
                 <Mail className="h-4 w-4 mr-3 text-blue-500" />
@@ -85,7 +85,7 @@ export function Footer() {
               </li>
               <li className="flex items-start text-sm text-gray-400">
                 <MapPin className="h-4 w-4 mr-3 text-blue-500 mt-0.5" />
-                <span>北京市朝阳区建国路88号<br/>安信大厦18层</span>
+                <span>河南省郑州市高新技术产业开发区<br/>翠竹街1号107幢1单元5楼</span>
               </li>
             </ul>
           </div>
@@ -94,7 +94,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400">
-            © 2024 安信护卫科技有限公司 版权所有
+            © 2024 郑州皓天泽数智科技有限公司 版权所有
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">

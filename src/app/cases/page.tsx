@@ -250,7 +250,7 @@ export default function CasesPage() {
           </p>
           <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
             <Phone className="mr-2 h-5 w-5" />
-            400-888-8888
+            0371-68891110
           </Button>
         </div>
       </section>

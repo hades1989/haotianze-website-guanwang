@@ -101,7 +101,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  安信护卫科技有限公司成立于2009年，是一家专业的联网报警运营服务公司。公司总部位于北京，在全国50多个城市设有服务网点。
+                  郑州皓天泽数智科技有限公司是一家专业的联网报警运营服务公司。公司总部位于河南省郑州市，在全国多个城市设有服务网点。
                 </p>
                 <p>
                   我们专注于为金融、零售、制造、地产等行业客户提供全方位的安防解决方案，包括联网报警、视频监控、门禁系统、巡检服务等。
@@ -265,7 +265,7 @@ export default function AboutPage() {
           </p>
           <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
             <Phone className="mr-2 h-5 w-5" />
-            400-888-8888
+            0371-68891110
           </Button>
         </div>
       </section>

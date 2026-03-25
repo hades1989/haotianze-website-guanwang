@@ -91,7 +91,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">服务热线</h3>
-                      <p className="text-2xl font-bold text-blue-600">400-888-8888</p>
+                      <p className="text-2xl font-bold text-blue-600">0371-68891110</p>
                       <p className="text-sm text-gray-500 mt-1">7×24小时服务</p>
                     </div>
                   </CardContent>
@@ -117,8 +117,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">公司地址</h3>
-                      <p className="text-gray-700">北京市朝阳区建国路88号</p>
-                      <p className="text-gray-700">安信大厦18层</p>
+                      <p className="text-gray-700">河南省郑州市高新技术产业开发区</p>
+                      <p className="text-gray-700">翠竹街1号107幢1单元5楼</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -281,7 +281,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">公司位置</h2>
-            <p className="text-gray-600">北京市朝阳区建国路88号安信大厦18层</p>
+            <p className="text-gray-600">河南省郑州市高新技术产业开发区翠竹街1号107幢1单元5楼</p>
           </div>
           <div className="aspect-video bg-gray-200 rounded-xl flex items-center justify-center">
             <div className="text-center text-gray-500">

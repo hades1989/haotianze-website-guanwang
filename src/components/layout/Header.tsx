@@ -26,7 +26,7 @@ export function Header() {
             <Shield className="h-6 w-6 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-gray-900">安信护卫</span>
+            <span className="text-lg font-bold text-gray-900">皓天泓</span>
             <span className="text-xs text-gray-500">专业联网报警服务</span>
           </div>
         </Link>
@@ -48,7 +48,7 @@ export function Header() {
         <div className="hidden md:flex items-center space-x-4">
           <div className="flex items-center text-sm text-gray-600">
             <Phone className="h-4 w-4 mr-2 text-blue-600" />
-            <span className="font-medium">400-888-8888</span>
+            <span className="font-medium">0371-68891110</span>
           </div>
           <Button className="bg-blue-600 hover:bg-blue-700">
             免费咨询
@@ -77,7 +77,7 @@ export function Header() {
               <div className="pt-4 border-t">
                 <div className="flex items-center text-sm text-gray-600 mb-4">
                   <Phone className="h-4 w-4 mr-2 text-blue-600" />
-                  <span className="font-medium">400-888-8888</span>
+                  <span className="font-medium">0371-68891110</span>
                 </div>
                 <Button className="w-full bg-blue-600 hover:bg-blue-700">
                   免费咨询
