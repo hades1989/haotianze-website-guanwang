@@ -96,7 +96,7 @@ export function Footer() {
           <p className="text-sm text-gray-400">
             © 2024 郑州皓天泽数智科技有限公司 版权所有
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex space-x-6 mt-4 md:mt-0 items-center">
             <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
               隐私政策
             </Link>
@@ -105,6 +105,9 @@ export function Footer() {
             </Link>
             <Link href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
               京ICP备XXXXXXXX号
+            </Link>
+            <Link href="/admin/login" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">
+              管理员登录
             </Link>
           </div>
         </div>
