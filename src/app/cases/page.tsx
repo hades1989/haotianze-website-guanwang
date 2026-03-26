@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +12,7 @@ import {
   Calendar,
   CheckCircle2,
   Phone,
+  Upload,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -144,20 +146,28 @@ export default function CasesPage() {
       {/* Industry Filter */}
       <section className="py-8 bg-white border-b sticky top-16 z-40">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-3">
-            <Badge variant="default" className="px-4 py-2 text-sm cursor-pointer bg-blue-600">
-              全部
-            </Badge>
-            {industries.map((industry) => (
-              <Badge
-                key={industry.id}
-                variant="outline"
-                className="px-4 py-2 text-sm cursor-pointer hover:bg-blue-50"
-              >
-                <industry.icon className="h-4 w-4 mr-2" />
-                {industry.name}
+          <div className="flex flex-wrap justify-between items-center gap-4 mb-4">
+            <div className="flex flex-wrap gap-3">
+              <Badge variant="default" className="px-4 py-2 text-sm cursor-pointer bg-blue-600">
+                全部
               </Badge>
-            ))}
+              {industries.map((industry) => (
+                <Badge
+                  key={industry.id}
+                  variant="outline"
+                  className="px-4 py-2 text-sm cursor-pointer hover:bg-blue-50"
+                >
+                  <industry.icon className="h-4 w-4 mr-2" />
+                  {industry.name}
+                </Badge>
+              ))}
+            </div>
+            <Link href="/admin/upload">
+              <Button variant="outline" size="sm">
+                <Upload className="h-4 w-4 mr-2" />
+                上传图片
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
