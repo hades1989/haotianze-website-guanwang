@@ -1,4 +1,6 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,46 +12,22 @@ import {
   CheckCircle2,
   Phone,
   Building,
-  Medal,
-  FileCheck,
 } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: '关于我们',
-  description: '安信护卫科技有限公司是一家专业的联网报警运营服务公司，拥有15年行业经验',
-};
+interface Milestone {
+  year: string;
+  event: string;
+}
 
-const milestones = [
-  { year: '2009', event: '公司成立，开展联网报警业务' },
-  { year: '2012', event: '获得安防工程一级资质' },
-  { year: '2015', event: '服务客户突破1000家' },
-  { year: '2018', event: '业务拓展至全国50个城市' },
-  { year: '2020', event: '引入智能分析预警系统' },
-  { year: '2023', event: '服务客户突破2000家' },
-];
+interface Honor {
+  title: string;
+  description: string;
+}
 
-const honors = [
-  {
-    icon: Medal,
-    title: '安防工程一级资质',
-    description: '中国安全防范产品行业协会颁发的最高等级资质',
-  },
-  {
-    icon: FileCheck,
-    title: 'ISO9001质量管理体系认证',
-    description: '国际标准化组织质量管理体系认证',
-  },
-  {
-    icon: Award,
-    title: 'AAA级信用企业',
-    description: '中国质量认证中心颁发的企业信用等级证书',
-  },
-  {
-    icon: Shield,
-    title: '安防行业十佳企业',
-    description: '中国安防协会评选的优秀安防企业',
-  },
-];
+interface AboutConfig {
+  milestones: Milestone[];
+  honors: Honor[];
+}
 
 const team = [
   {
@@ -79,6 +57,25 @@ const team = [
 ];
 
 export default function AboutPage() {
+  const [config, setConfig] = useState<AboutConfig>({
+    milestones: [],
+    honors: [],
+  });
+
+  useEffect(() => {
+    loadConfig();
+  }, []);
+
+  const loadConfig = async () => {
+    try {
+      const response = await fetch('/api/about');
+      const data = await response.json();
+      setConfig(data);
+    } catch (error) {
+      console.error('Failed to load about config:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -132,8 +129,12 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-video rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                <Building className="h-32 w-32 text-blue-600" />
+              <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
+                <img
+                  src="/about/company-intro.jpg"
+                  alt="皓天泽科技"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
               </div>
             </div>
           </div>
@@ -195,7 +196,7 @@ export default function AboutPage() {
               
               {/* Timeline items */}
               <div className="space-y-8">
-                {milestones.map((milestone, index) => (
+                {config.milestones.map((milestone, index) => (
                   <div key={index} className="relative pl-12">
                     <div className="absolute left-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
                       <History className="h-4 w-4 text-white" />
@@ -220,11 +221,11 @@ export default function AboutPage() {
             <p className="text-gray-600">专业资质认证，品质值得信赖</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {honors.map((honor, index) => (
-              <Card key={index} className="border-0 shadow-md text-center">
+            {config.honors.map((honor, index) => (
+              <Card key={index} className="border-0 shadow-md text-center hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
-                    <honor.icon className="h-8 w-8 text-blue-600" />
+                    <Award className="h-8 w-8 text-blue-600" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
                     {honor.title}

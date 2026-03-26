@@ -14,6 +14,7 @@ import {
   X,
   Mail,
   MessageSquare,
+  BookOpen,
 } from 'lucide-react';
 
 export default function AdminPage() {
@@ -32,10 +33,17 @@ export default function AdminPage() {
     },
     {
       title: '联系信息配置',
-      description: '编辑邮箱、电话、地址等联系方式',
+      description: '编辑邮箱、电话、地址、营业时间、二维码',
       icon: Mail,
       href: '/admin/config',
       color: 'bg-purple-600',
+    },
+    {
+      title: '关于我们配置',
+      description: '编辑发展历程和资质荣誉',
+      icon: BookOpen,
+      href: '/admin/about',
+      color: 'bg-cyan-600',
     },
     {
       title: '用户留言',
