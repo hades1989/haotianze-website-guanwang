@@ -12,6 +12,8 @@ import {
   Shield,
   Menu,
   X,
+  Mail,
+  MessageSquare,
 } from 'lucide-react';
 
 export default function AdminPage() {
@@ -29,11 +31,18 @@ export default function AdminPage() {
       color: 'bg-blue-600',
     },
     {
-      title: '网站管理',
-      description: '管理网站内容和配置',
-      icon: LayoutDashboard,
-      href: '#',
-      color: 'bg-green-600',
+      title: '联系信息配置',
+      description: '编辑邮箱、电话、地址等联系方式',
+      icon: Mail,
+      href: '/admin/config',
+      color: 'bg-purple-600',
+    },
+    {
+      title: '用户留言',
+      description: '查看和管理网站用户留言',
+      icon: MessageSquare,
+      href: '/admin/messages',
+      color: 'bg-emerald-600',
     },
   ];
 

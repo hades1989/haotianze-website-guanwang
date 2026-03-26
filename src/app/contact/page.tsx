@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,7 +16,18 @@ import {
   Building,
 } from 'lucide-react';
 
+interface ContactConfig {
+  email: string;
+  phone: string;
+  address: string;
+}
+
 export default function ContactPage() {
+  const [config, setConfig] = useState<ContactConfig>({
+    email: 'service@anxin.com',
+    phone: '0371-68891110',
+    address: '河南省郑州市高新技术产业开发区翠竹街1号107幢1单元5楼',
+  });
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -28,26 +39,54 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  useEffect(() => {
+    loadConfig();
+  }, []);
+
+  const loadConfig = async () => {
+    try {
+      const response = await fetch('/api/config');
+      const data = await response.json();
+      setConfig(data);
+    } catch (error) {
+      console.error('Failed to load config:', error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        phone: '',
-        company: '',
-        email: '',
-        service: '',
-        message: '',
+    try {
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus('idle'), 3000);
-    }, 1000);
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          phone: '',
+          company: '',
+          email: '',
+          service: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -93,7 +132,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">服务热线</h3>
-                      <p className="text-2xl font-bold text-blue-600">0371-68891110</p>
+                      <p className="text-2xl font-bold text-blue-600">{config.phone}</p>
                       <p className="text-sm text-gray-500 mt-1">7×24小时服务</p>
                     </div>
                   </CardContent>
@@ -106,7 +145,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">电子邮箱</h3>
-                      <p className="text-lg text-gray-700">service@anxin.com</p>
+                      <p className="text-lg text-gray-700">{config.email}</p>
                       <p className="text-sm text-gray-500 mt-1">商务合作咨询</p>
                     </div>
                   </CardContent>
@@ -119,8 +158,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">公司地址</h3>
-                      <p className="text-gray-700">河南省郑州市高新技术产业开发区</p>
-                      <p className="text-gray-700">翠竹街1号107幢1单元5楼</p>
+                      {config.address.split('\n').map((line, index) => (
+                        <p key={index} className="text-gray-700">{line}</p>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
@@ -283,7 +323,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">公司位置</h2>
-            <p className="text-gray-600">河南省郑州市高新技术产业开发区翠竹街1号107幢1单元5楼</p>
+            <p className="text-gray-600">{config.address.replace('\n', ' ')}</p>
           </div>
           <div className="aspect-video bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
             <iframe
