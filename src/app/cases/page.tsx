@@ -42,7 +42,7 @@ const cases = [
       '24小时监控中心值守',
       '连续3年零安全事故',
     ],
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
+    image: '/cases/case-1-bank.jpg',
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ const cases = [
       '报警响应时间<5分钟',
       '有效阻止多起盗窃事件',
     ],
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+    image: '/cases/case-2-jewelry.jpg',
   },
   {
     id: 3,
@@ -74,7 +74,7 @@ const cases = [
       '电子巡更管理系统',
       '安保团队驻场服务',
     ],
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
+    image: '/cases/case-3-factory.jpg',
   },
   {
     id: 4,
@@ -90,7 +90,7 @@ const cases = [
       '车辆自动识别放行',
       '业主满意度98%',
     ],
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop',
+    image: '/cases/case-4-villa.jpg',
   },
   {
     id: 5,
@@ -106,7 +106,7 @@ const cases = [
       '机房环境实时监控',
       '专业安保团队24小时值守',
     ],
-    image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&h=600&fit=crop',
+    image: '/cases/case-5-office.jpg',
   },
   {
     id: 6,
@@ -122,7 +122,7 @@ const cases = [
       '快速出警处置',
       '保险理赔协助',
     ],
-    image: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=800&h=600&fit=crop',
+    image: '/cases/case-6-convenience.jpg',
   },
 ];
 
@@ -181,7 +181,12 @@ export default function CasesPage() {
               const industry = industries.find(i => i.id === caseItem.industry);
               return (
                 <Card key={caseItem.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2">
-                  <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                  <div className="aspect-video relative overflow-hidden">
+                    <img
+                      src={caseItem.image}
+                      alt={caseItem.title}
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4">
                       {industry && (

@@ -39,6 +39,7 @@ const services = [
       { icon: AlertTriangle, title: '快速响应', desc: '5分钟内响应' },
       { icon: CheckCircle2, title: '专业处置', desc: '培训持证上岗' },
     ],
+    image: '/services/service-alarm.jpg',
     color: 'from-blue-500 to-blue-600',
     bgColor: 'bg-blue-100',
   },
@@ -60,6 +61,7 @@ const services = [
       { icon: Video, title: '远程查看', desc: '随时随地' },
       { icon: AlertTriangle, title: '智能预警', desc: '主动防范' },
     ],
+    image: '/services/service-monitor.jpg',
     color: 'from-purple-500 to-purple-600',
     bgColor: 'bg-purple-100',
   },
@@ -81,6 +83,7 @@ const services = [
       { icon: Users, title: '访客管理', desc: '预约授权' },
       { icon: FileText, title: '记录查询', desc: '可追溯' },
     ],
+    image: '/services/service-access.jpg',
     color: 'from-cyan-500 to-cyan-600',
     bgColor: 'bg-cyan-100',
   },
@@ -102,6 +105,7 @@ const services = [
       { icon: CheckCircle2, title: '隐患排查', desc: '定期检查' },
       { icon: Clock, title: '应急响应', desc: '快速处置' },
     ],
+    image: '/services/service-patrol.jpg',
     color: 'from-emerald-500 to-emerald-600',
     bgColor: 'bg-emerald-100',
   },
@@ -135,8 +139,12 @@ export default function ServicesPage() {
                 <div className={`flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image/Icon Side */}
                   <div className="w-full lg:w-2/5">
-                    <div className={`aspect-video rounded-2xl bg-gradient-to-br ${service.bgColor} to-white flex items-center justify-center shadow-lg`}>
-                      <service.icon className={`h-32 w-32 text-transparent bg-clip-text bg-gradient-to-br ${service.color}`} />
+                    <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
                   </div>
                   
