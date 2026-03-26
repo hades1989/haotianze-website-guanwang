@@ -279,18 +279,43 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">公司位置</h2>
             <p className="text-gray-600">河南省郑州市高新技术产业开发区翠竹街1号107幢1单元5楼</p>
           </div>
-          <div className="aspect-video bg-gray-200 rounded-xl flex items-center justify-center">
-            <div className="text-center text-gray-500">
-              <Building className="h-16 w-16 mx-auto mb-4" />
-              <p>地图加载中...</p>
-              <p className="text-sm">实际项目中可集成百度地图/高德地图</p>
-            </div>
+          <div className="aspect-video bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+            <iframe
+              src="https://uri.amap.com/marker?position=113.537000,34.820000&name=皓天泽科技&coordinate=wgs84&callnative=1"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="公司位置地图"
+            ></iframe>
+          </div>
+          <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://uri.amap.com/navigation?to=113.537000,34.820000,皓天泽科技&mode=car&coordinate=wgs84&callnative=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
+            >
+              <MapPin className="h-5 w-5 mr-2" />
+              高德地图导航
+            </a>
+            <a
+              href="https://api.map.baidu.com/marker?location=34.820000,113.537000&title=皓天泽科技&content=河南省郑州市高新技术产业开发区翠竹街1号107幢1单元5楼&output=html&src=webapp.lbsapi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white rounded-lg hover:from-emerald-700 hover:to-cyan-700 transition-all shadow-md hover:shadow-lg"
+            >
+              <Building className="h-5 w-5 mr-2" />
+              百度地图导航
+            </a>
           </div>
         </div>
       </section>
