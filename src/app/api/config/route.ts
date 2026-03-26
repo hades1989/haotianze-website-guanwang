@@ -13,6 +13,8 @@ export async function GET() {
       email: 'service@anxin.com',
       phone: '0371-68891110',
       address: '河南省郑州市高新技术产业开发区翠竹街1号107幢1单元5楼',
+      businessHours: '周一至周五：9:00 - 18:00\n周六日：10:00 - 16:00',
+      qrcode: '',
       updatedAt: new Date().toISOString(),
     });
   }
@@ -21,7 +23,7 @@ export async function GET() {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, phone, address } = body;
+    const { email, phone, address, businessHours, qrcode } = body;
 
     if (!email || !phone || !address) {
       return NextResponse.json(
@@ -34,6 +36,8 @@ export async function PUT(request: NextRequest) {
       email,
       phone,
       address,
+      businessHours: businessHours || '周一至周五：9:00 - 18:00\n周六日：10:00 - 16:00',
+      qrcode: qrcode || '',
       updatedAt: new Date().toISOString(),
     };
 

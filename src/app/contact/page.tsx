@@ -20,6 +20,8 @@ interface ContactConfig {
   email: string;
   phone: string;
   address: string;
+  businessHours: string;
+  qrcode: string;
 }
 
 export default function ContactPage() {
@@ -27,6 +29,8 @@ export default function ContactPage() {
     email: 'service@anxin.com',
     phone: '0371-68891110',
     address: '河南省郑州市高新技术产业开发区翠竹街1号107幢1单元5楼',
+    businessHours: '周一至周五：9:00 - 18:00\n周六日：10:00 - 16:00',
+    qrcode: '',
   });
   const [formData, setFormData] = useState({
     name: '',
@@ -170,28 +174,31 @@ export default function ContactPage() {
                     <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
                       <Clock className="h-6 w-6 text-blue-600" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="font-semibold text-gray-900 mb-1">营业时间</h3>
-                      <p className="text-gray-700">周一至周五：9:00 - 18:00</p>
-                      <p className="text-gray-700">周六日：10:00 - 16:00</p>
+                      {config.businessHours.split('\n').map((line, index) => (
+                        <p key={index} className="text-gray-700">{line}</p>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
               </div>
 
               {/* Quick Contact */}
-              <div className="mt-8 p-6 bg-blue-50 rounded-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <MessageCircle className="h-6 w-6 text-blue-600" />
-                  <h3 className="font-semibold text-gray-900">快速咨询</h3>
+              {config.qrcode && (
+                <div className="mt-8 p-6 bg-blue-50 rounded-xl">
+                  <div className="flex items-center gap-3 mb-4">
+                    <MessageCircle className="h-6 w-6 text-blue-600" />
+                    <h3 className="font-semibold text-gray-900">快速咨询</h3>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    扫描下方二维码，添加企业微信客服，获取一对一专业咨询服务
+                  </p>
+                  <div className="w-32 h-32 bg-white rounded-lg flex items-center justify-center border shadow-sm">
+                    <img src={config.qrcode} alt="企业微信二维码" className="w-full h-full object-contain rounded-lg" />
+                  </div>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
-                  扫描下方二维码，添加企业微信客服，获取一对一专业咨询服务
-                </p>
-                <div className="w-32 h-32 bg-white rounded-lg flex items-center justify-center border">
-                  <span className="text-gray-400 text-sm text-center">二维码<br/>占位图</span>
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Contact Form */}

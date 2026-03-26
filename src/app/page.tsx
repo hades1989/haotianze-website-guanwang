@@ -316,12 +316,14 @@ export default function Home() {
             免费上门评估，专业方案设计，快速安装部署
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-purple-50 text-base px-8 shadow-lg">
-              <Phone className="mr-2 h-5 w-5" />
-              0371-68891110
-            </Button>
+            <a href="tel:0371-68891110">
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-purple-50 text-base px-8 shadow-lg">
+                <Phone className="mr-2 h-5 w-5" />
+                0371-68891110
+              </Button>
+            </a>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-base px-8">
+              <Button size="lg" className="border-2 border-white bg-white/10 text-white hover:bg-white hover:text-purple-600 text-base px-8">
                 在线咨询
               </Button>
             </Link>

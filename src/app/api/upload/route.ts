@@ -7,18 +7,12 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
+    const type = formData.get('type') as string; // 'case' or 'qrcode'
     const caseId = formData.get('caseId') as string;
 
     if (!file) {
       return NextResponse.json(
         { error: '请选择要上传的图片' },
-        { status: 400 }
-      );
-    }
-
-    if (!caseId) {
-      return NextResponse.json(
-        { error: '请提供案例ID' },
         { status: 400 }
       );
     }
@@ -41,27 +35,49 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 确保目标目录存在
-    const uploadDir = path.join(process.cwd(), 'public', 'cases');
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true });
+    let uploadDir: string;
+    let filename: string;
+
+    if (type === 'qrcode') {
+      // 二维码上传
+      uploadDir = path.join(process.cwd(), 'public', 'upload');
+      if (!existsSync(uploadDir)) {
+        await mkdir(uploadDir, { recursive: true });
+      }
+      const ext = file.name.split('.').pop();
+      const timestamp = Date.now();
+      filename = `qrcode_${timestamp}.${ext}`;
+    } else if (type === 'case') {
+      // 案例图片上传
+      if (!caseId) {
+        return NextResponse.json(
+          { error: '请提供案例ID' },
+          { status: 400 }
+        );
+      }
+      uploadDir = path.join(process.cwd(), 'public', 'cases');
+      if (!existsSync(uploadDir)) {
+        await mkdir(uploadDir, { recursive: true });
+      }
+      const ext = file.name.split('.').pop();
+      const timestamp = Date.now();
+      filename = `case_${caseId}_${timestamp}.${ext}`;
+    } else {
+      return NextResponse.json(
+        { error: '无效的上传类型' },
+        { status: 400 }
+      );
     }
 
-    // 生成文件名：案例ID_时间戳.扩展名
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    
-    // 获取文件扩展名
-    const ext = file.name.split('.').pop();
-    const timestamp = Date.now();
-    const filename = `case_${caseId}_${timestamp}.${ext}`;
     const filepath = path.join(uploadDir, filename);
 
     // 保存文件
     await writeFile(filepath, buffer);
 
     // 返回文件的公开访问路径
-    const imageUrl = `/cases/${filename}`;
+    const imageUrl = type === 'qrcode' ? `/upload/${filename}` : `/cases/${filename}`;
 
     return NextResponse.json({
       success: true,
