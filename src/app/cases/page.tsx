@@ -21,10 +21,10 @@ export const metadata: Metadata = {
 };
 
 const industries = [
-  { id: 'finance', name: '金融行业', icon: Building },
-  { id: 'retail', name: '商业零售', icon: Store },
-  { id: 'manufacture', name: '工业制造', icon: Factory },
-  { id: 'realestate', name: '住宅社区', icon: Building2 },
+  { id: 'finance', name: '金融行业', icon: Building, color: 'from-amber-400 to-orange-500', bg: 'bg-amber-50', text: 'text-amber-600' },
+  { id: 'retail', name: '商业零售', icon: Store, color: 'from-rose-400 to-pink-500', bg: 'bg-rose-50', text: 'text-rose-600' },
+  { id: 'manufacture', name: '工业制造', icon: Factory, color: 'from-emerald-400 to-green-500', bg: 'bg-emerald-50', text: 'text-emerald-600' },
+  { id: 'realestate', name: '住宅社区', icon: Building2, color: 'from-violet-400 to-purple-500', bg: 'bg-violet-50', text: 'text-violet-600' },
 ];
 
 const cases = [
@@ -130,13 +130,15 @@ export default function CasesPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-16">
-        <div className="container mx-auto px-4">
+      <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-900 text-white py-16 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               成功案例
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-purple-100">
               服务2000+客户，覆盖多个行业领域
             </p>
           </div>
@@ -144,18 +146,17 @@ export default function CasesPage() {
       </section>
 
       {/* Industry Filter */}
-      <section className="py-8 bg-white border-b sticky top-16 z-40">
+      <section className="py-8 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 border-b sticky top-16 z-40">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-between items-center gap-4 mb-4">
             <div className="flex flex-wrap gap-3">
-              <Badge variant="default" className="px-4 py-2 text-sm cursor-pointer bg-blue-600">
+              <Badge className="px-4 py-2 text-sm cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg transition-shadow">
                 全部
               </Badge>
               {industries.map((industry) => (
                 <Badge
                   key={industry.id}
-                  variant="outline"
-                  className="px-4 py-2 text-sm cursor-pointer hover:bg-blue-50"
+                  className={`px-4 py-2 text-sm cursor-pointer hover:shadow-md transition-all ${industry.bg} ${industry.text} hover:scale-105`}
                 >
                   <industry.icon className="h-4 w-4 mr-2" />
                   {industry.name}
@@ -163,7 +164,7 @@ export default function CasesPage() {
               ))}
             </div>
             <Link href="/admin/upload">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-50">
                 <Upload className="h-4 w-4 mr-2" />
                 上传图片
               </Button>
@@ -176,20 +177,24 @@ export default function CasesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cases.map((caseItem) => (
-              <Card key={caseItem.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video bg-gray-200 relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <Badge className="bg-blue-600">
-                      {industries.find(i => i.id === caseItem.industry)?.name}
-                    </Badge>
+            {cases.map((caseItem) => {
+              const industry = industries.find(i => i.id === caseItem.industry);
+              return (
+                <Card key={caseItem.id} className="overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2">
+                  <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      {industry && (
+                        <Badge className={`bg-gradient-to-r ${industry.color} hover:shadow-lg transition-all`}>
+                          {industry.name}
+                        </Badge>
+                      )}
+                    </div>
                   </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                    {caseItem.title}
-                  </h3>
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all">
+                      {caseItem.title}
+                    </h3>
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
                     <span className="flex items-center gap-1">
                       <MapPin className="h-4 w-4" />
@@ -220,45 +225,48 @@ export default function CasesPage() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">2000+</div>
-              <div className="text-gray-600">服务客户</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">2000+</div>
+              <div className="text-gray-700 font-medium">服务客户</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">50+</div>
-              <div className="text-gray-600">覆盖城市</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">50+</div>
+              <div className="text-gray-700 font-medium">覆盖城市</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">15年</div>
-              <div className="text-gray-600">行业经验</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent mb-2">15年</div>
+              <div className="text-gray-700 font-medium">行业经验</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">98%</div>
-              <div className="text-gray-600">客户满意度</div>
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2">98%</div>
+              <div className="text-gray-700 font-medium">客户满意度</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-16 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        <div className="container mx-auto px-4 text-center relative">
           <h2 className="text-3xl font-bold mb-4">
             想了解适合您的安防方案？
           </h2>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-purple-100 mb-8 max-w-2xl mx-auto">
             联系我们，获取专业顾问的一对一咨询服务
           </p>
-          <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+          <Button size="lg" className="bg-white text-purple-600 hover:bg-purple-50 shadow-lg">
             <Phone className="mr-2 h-5 w-5" />
             0371-68891110
           </Button>

@@ -23,8 +23,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-600">
+            <div className="flex items-center space-x-2 group">
+              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
                 <Shield className="h-6 w-6 text-white" />
               </div>
               <div className="flex flex-col">

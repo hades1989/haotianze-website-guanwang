@@ -21,12 +21,12 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-600">
+        <Link href="/" className="flex items-center space-x-2 group">
+          <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 group-hover:scale-110 transition-transform shadow-md">
             <Shield className="h-6 w-6 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold text-gray-900">皓天泽</span>
+            <span className="text-lg font-bold text-gray-900 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all">皓天泽</span>
             <span className="text-xs text-gray-500">专业联网报警服务</span>
           </div>
         </Link>

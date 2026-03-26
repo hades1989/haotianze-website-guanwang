@@ -39,6 +39,8 @@ const services = [
       { icon: AlertTriangle, title: '快速响应', desc: '5分钟内响应' },
       { icon: CheckCircle2, title: '专业处置', desc: '培训持证上岗' },
     ],
+    color: 'from-blue-500 to-blue-600',
+    bgColor: 'bg-blue-100',
   },
   {
     id: 'monitor',
@@ -58,6 +60,8 @@ const services = [
       { icon: Video, title: '远程查看', desc: '随时随地' },
       { icon: AlertTriangle, title: '智能预警', desc: '主动防范' },
     ],
+    color: 'from-purple-500 to-purple-600',
+    bgColor: 'bg-purple-100',
   },
   {
     id: 'access',
@@ -77,6 +81,8 @@ const services = [
       { icon: Users, title: '访客管理', desc: '预约授权' },
       { icon: FileText, title: '记录查询', desc: '可追溯' },
     ],
+    color: 'from-cyan-500 to-cyan-600',
+    bgColor: 'bg-cyan-100',
   },
   {
     id: 'patrol',
@@ -96,6 +102,8 @@ const services = [
       { icon: CheckCircle2, title: '隐患排查', desc: '定期检查' },
       { icon: Clock, title: '应急响应', desc: '快速处置' },
     ],
+    color: 'from-emerald-500 to-emerald-600',
+    bgColor: 'bg-emerald-100',
   },
 ];
 
@@ -103,13 +111,15 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-16">
-        <div className="container mx-auto px-4">
+      <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-900 text-white py-16 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/2 translate-y-1/2"></div>
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               专业安防服务
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-purple-100">
               从方案设计到运营维护，一站式安防解决方案
             </p>
           </div>
@@ -125,22 +135,22 @@ export default function ServicesPage() {
                 <div className={`flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image/Icon Side */}
                   <div className="w-full lg:w-2/5">
-                    <div className="aspect-video rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                      <service.icon className="h-32 w-32 text-blue-600" />
+                    <div className={`aspect-video rounded-2xl bg-gradient-to-br ${service.bgColor} to-white flex items-center justify-center shadow-lg`}>
+                      <service.icon className={`h-32 w-32 text-transparent bg-clip-text bg-gradient-to-br ${service.color}`} />
                     </div>
                   </div>
                   
                   {/* Content Side */}
                   <div className="w-full lg:w-3/5">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-md`}>
                         <service.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 group hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition-all">
                           {service.title}
                         </h2>
-                        <p className="text-blue-600">{service.subtitle}</p>
+                        <p className="text-purple-600 font-medium">{service.subtitle}</p>
                       </div>
                     </div>
                     
@@ -180,20 +190,22 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+      <section className="py-16 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        <div className="container mx-auto px-4 text-center relative">
+          <h2 className="text-3xl font-bold mb-4">
             需要定制化的安防方案？
           </h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-purple-100 mb-8 max-w-2xl mx-auto">
             我们的专业顾问将根据您的实际需求，提供最适合的安防解决方案
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+            <Button size="lg" className="bg-white text-purple-600 hover:bg-purple-50 shadow-lg">
               <Phone className="mr-2 h-5 w-5" />
               0371-68891110
             </Button>
-            <Button size="lg" variant="outline" className="border-blue-600 text-blue-600">
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
               在线咨询
             </Button>
           </div>
