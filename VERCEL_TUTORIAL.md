@@ -77,7 +77,25 @@
 6. 点击 **"Create"**
 7. ⚠️ **重要**：复制生成的 token（只显示一次！）
 
-#### 2.2 获取 Project ID
+#### 2.2 更新 GitHub Token（重要！⚠️）
+
+由于 GitHub 需要特殊权限才能推送 GitHub Actions 文件，你需要重新生成 GitHub Token：
+
+1. 访问：https://github.com/settings/tokens
+2. 找到之前创建的 token
+3. 点击 **"Delete"** 删除它
+4. 点击 **"Generate new token (classic)"**
+5. 填写：
+   - Note: `haotianze-website deployment`
+   - Expiration: `90 days`
+   - **勾选权限**：
+     - ✅ `repo`（完整的仓库访问权限）
+     - ✅ `workflow`（GitHub Actions 权限）⭐ **重要！**
+6. 点击 **"Generate token"**
+7. ⚠️ **重要**：复制新的 token（只显示一次！）
+8. 保存到安全的地方
+
+#### 2.3 获取 Project ID
 1. 回到项目页面（点击右上角返回）
 2. 进入你的项目：`haotianze-website-guanwang`
 3. 点击顶部的 **"Settings"** 标签
